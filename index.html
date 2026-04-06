@@ -22,37 +22,28 @@
             -webkit-tap-highlight-color: transparent;
         }
         .header { 
-            position: sticky; top: 0; background: rgba(0,0,0,0.85); 
+            position: sticky; top: 0; background: rgba(0,0,0,0.9); 
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             padding: 20px 15px; z-index: 100; border-bottom: 0.5px solid #333;
         }
         h1 { font-size: 24px; font-weight: 800; margin: 0 0 15px 0; color: var(--accent); letter-spacing: -0.5px; }
-        
         #searchInput {
             width: 100%; padding: 12px 15px; border-radius: 12px; border: none;
             background: var(--search-bg); color: white; font-size: 16px; box-sizing: border-box;
             outline: none; -webkit-appearance: none;
         }
-
         .container { padding: 0 15px; }
         .category-section { margin-top: 30px; }
-        .section-title { 
-            font-size: 16px; color: var(--secondary); 
-            margin-bottom: 12px; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 1px;
-        }
-
+        .section-title { font-size: 16px; color: var(--secondary); margin-bottom: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        
-        .btn {
-            background: var(--card); padding: 18px 12px; border-radius: 14px;
-            text-decoration: none; color: white; display: flex; flex-direction: column;
-            border: 0.5px solid #2c2c2e; transition: all 0.1s;
+        .card { 
+            background: var(--card); border-radius: 14px; border: 0.5px solid #2c2c2e; 
+            text-decoration: none; color: white; display: flex; flex-direction: column; 
+            padding: 18px 12px; transition: all 0.1s;
         }
-        .btn:active { transform: scale(0.96); background: #333; }
-        .label { font-size: 14px; font-weight: 500; line-height: 1.3; margin-bottom: 6px; height: 34px; display: flex; align-items: center; }
-        .code { font-size: 11px; color: var(--secondary); font-family: monospace; }
-
+        .card:active { transform: scale(0.96); background: #262626; }
+        .label { font-size: 13px; font-weight: 600; line-height: 1.2; margin-bottom: 6px; min-height: 32px; display: flex; align-items: center; }
+        .code-num { font-size: 10px; color: var(--secondary); font-family: monospace; }
         .hidden { display: none !important; }
         .no-results { text-align: center; padding: 50px; color: var(--secondary); display: none; }
     </style>
@@ -61,97 +52,119 @@
 
     <div class="header">
         <h1>Netflix Codes</h1>
-        <input type="search" id="searchInput" placeholder="Search categories or codes..." onkeyup="filterCodes()">
+        <input type="search" id="searchInput" placeholder="ค้นหาหมวดหมู่หรือรหัส..." onkeyup="filter()">
     </div>
 
-    <div class="container" id="mainContainer">
-        <div class="category-section">
-            <div class="section-title">Thrillers</div>
-            <div class="grid">
-                <a href="https://www.netflix.com/browse/genre/8933" target="_blank" class="btn"><span class="label">Main Thrillers</span><span class="code">8933</span></a>
-                <a href="https://www.netflix.com/browse/genre/10504" target="_blank" class="btn"><span class="label">Political Thrillers</span><span class="code">10504</span></a>
-                <a href="https://www.netflix.com/browse/genre/5505" target="_blank" class="btn"><span class="label">Psychological</span><span class="code">5505</span></a>
-                <a href="https://www.netflix.com/browse/genre/972" target="_blank" class="btn"><span class="label">Steamy Thrillers</span><span class="code">972</span></a>
-                <a href="https://www.netflix.com/browse/genre/46588" target="_blank" class="btn"><span class="label">Classic Thrillers</span><span class="code">46588</span></a>
-                <a href="https://www.netflix.com/browse/genre/10499" target="_blank" class="btn"><span class="label">Crime Thrillers</span><span class="code">10499</span></a>
-                <a href="https://www.netflix.com/browse/genre/9994" target="_blank" class="btn"><span class="label">Mysteries</span><span class="code">9994</span></a>
-                <a href="https://www.netflix.com/browse/genre/9147" target="_blank" class="btn"><span class="label">Spy Thrillers</span><span class="code">9147</span></a>
-            </div>
-        </div>
-
-        <div class="category-section">
-            <div class="section-title">Dramas</div>
-            <div class="grid">
-                <a href="https://www.netflix.com/browse/genre/5763" target="_blank" class="btn"><span class="label">Main Dramas</span><span class="code">5763</span></a>
-                <a href="https://www.netflix.com/browse/genre/6616" target="_blank" class="btn"><span class="label">Political Dramas</span><span class="code">6616</span></a>
-                <a href="https://www.netflix.com/browse/genre/384" target="_blank" class="btn"><span class="label">Indie Dramas</span><span class="code">384</span></a>
-                <a href="https://www.netflix.com/browse/genre/3179" target="_blank" class="btn"><span class="label">Biographical</span><span class="code">3179</span></a>
-                <a href="https://www.netflix.com/browse/genre/6889" target="_blank" class="btn"><span class="label">Crime Dramas</span><span class="code">6889</span></a>
-                <a href="https://www.netflix.com/browse/genre/3653" target="_blank" class="btn"><span class="label">Based on Real Life</span><span class="code">3653</span></a>
-            </div>
-        </div>
-
-        <div class="category-section">
-            <div class="section-title">Classics & Art</div>
-            <div class="grid">
-                <a href="https://www.netflix.com/browse/genre/31574" target="_blank" class="btn"><span class="label">Classic Movies</span><span class="code">31574</span></a>
-                <a href="https://www.netflix.com/browse/genre/7687" target="_blank" class="btn"><span class="label">Film Noir</span><span class="code">7687</span></a>
-                <a href="https://www.netflix.com/browse/genre/29764" target="_blank" class="btn"><span class="label">Art House</span><span class="code">29764</span></a>
-                <a href="https://www.netflix.com/browse/genre/53310" target="_blank" class="btn"><span class="label">Silent Movies</span><span class="code">53310</span></a>
-                <a href="https://www.netflix.com/browse/genre/52858" target="_blank" class="btn"><span class="label">Epics</span><span class="code">52858</span></a>
-            </div>
-        </div>
-
-        <div class="category-section">
-            <div class="section-title">Foreign & Thai</div>
-            <div class="grid">
-                <a href="https://www.netflix.com/browse/genre/107570" target="_blank" class="btn"><span class="label">Thai Movies & TV</span><span class="code">107570</span></a>
-                <a href="https://www.netflix.com/browse/genre/9196" target="_blank" class="btn"><span class="label">Southeast Asian</span><span class="code">9196</span></a>
-                <a href="https://www.netflix.com/browse/genre/5685" target="_blank" class="btn"><span class="label">Korean Movies</span><span class="code">5685</span></a>
-                <a href="https://www.netflix.com/browse/genre/10398" target="_blank" class="btn"><span class="label">Japanese Movies</span><span class="code">10398</span></a>
-                <a href="https://www.netflix.com/browse/genre/9292" target="_blank" class="btn"><span class="label">Scandinavian</span><span class="code">9292</span></a>
-                <a href="https://www.netflix.com/browse/genre/58807" target="_blank" class="btn"><span class="label">French Movies</span><span class="code">58807</span></a>
-            </div>
-        </div>
-
-        <div class="category-section">
-            <div class="section-title">Sci-Fi & Action</div>
-            <div class="grid">
-                <a href="https://www.netflix.com/browse/genre/1492" target="_blank" class="btn"><span class="label">Main Sci-Fi</span><span class="code">1492</span></a>
-                <a href="https://www.netflix.com/browse/genre/1365" target="_blank" class="btn"><span class="label">Action & Adv</span><span class="code">1365</span></a>
-                <a href="https://www.netflix.com/browse/genre/43048" target="_blank" class="btn"><span class="label">Action Thrillers</span><span class="code">43048</span></a>
-                <a href="https://www.netflix.com/browse/genre/1568" target="_blank" class="btn"><span class="label">Action SF</span><span class="code">1568</span></a>
-            </div>
-        </div>
-
-        <div class="no-results" id="noResults">No categories found</div>
-    </div>
+    <div class="container" id="mainContainer"></div>
+    <div class="no-results" id="noResults">ไม่พบหมวดหมู่ที่ค้นหา</div>
 
     <script>
-        function filterCodes() {
+        const data = [
+            { t: "Action & adventure", items: [
+                {n: "Main Category", c: "1365"}, {n: "Action comedies", c: "43040"}, {n: "Action sf & fantasy", c: "1568"}, {n: "Action thrillers", c: "43048"}, {n: "Adventures", c: "7442"}, {n: "Asian action movies", c: "77232"}, {n: "Classic Action", c: "46576"}, {n: "Comic & superhero", c: "10118"}, {n: "Crime action", c: "9584"}, {n: "Foreign action", c: "11828"}, {n: "Hijacking movies", c: "20541"}, {n: "Martial arts", c: "8985"}, {n: "Military action", c: "2125"}, {n: "Spy action", c: "10702"}, {n: "Westerns", c: "7700"}
+            ]},
+            { t: "Anime", items: [
+                {n: "Main Category", c: "7424"}, {n: "Adult animation", c: "11881"}, {n: "Animal tales", c: "5507"}, {n: "Anime Sci-Fi", c: "2729"}, {n: "Anime action", c: "2653"}, {n: "Anime comedies", c: "9302"}, {n: "Anime dramas", c: "452"}, {n: "Anime fantasy", c: "11146"}, {n: "Anime features", c: "3063"}, {n: "Anime horror", c: "10695"}, {n: "Anime series", c: "6721"}
+            ]},
+            { t: "Children & family", items: [
+                {n: "Main Category", c: "783"}, {n: "Animal tales", c: "5507"}, {n: "Disney", c: "67673"}, {n: "Education", c: "10659"}, {n: "Family features", c: "51056"}, {n: "Kids Music", c: "52843"}, {n: "Kids' TV", c: "27346"}, {n: "Book Movies", c: "10056"}, {n: "Ages 0-2", c: "6796"}, {n: "Ages 11-12", c: "6962"}, {n: "Ages 2-4", c: "6218"}, {n: "Ages 5-7", c: "5455"}, {n: "Ages 8-10", c: "561"}, {n: "TV cartoons", c: "11177"}
+            ]},
+            { t: "Christmas 🎄", items: [
+                {n: "British Xmas", c: "1527064"}, {n: "Canadian Xmas", c: "1721544"}, {n: "Children & Family", c: "1474017"}, {n: "Ages 11-12", c: "1477206"}, {n: "Ages 5-7", c: "1477201"}, {n: "Ages 8-10", c: "1477204"}, {n: "Xmas from 90s", c: "1476024"}, {n: "European Xmas", c: "1527063"}, {n: "Family-friendly", c: "1394522"}, {n: "Feel-good", c: "1475066"}, {n: "Goofy Xmas", c: "1475071"}, {n: "Romantic Xmas", c: "1394527"}
+            ]},
+            { t: "Classic Movies", items: [
+                {n: "Main Category", c: "31574"}, {n: "Classic SF", c: "47147"}, {n: "Classic TV", c: "46553"}, {n: "Classic Action", c: "46576"}, {n: "Classic comedies", c: "31694"}, {n: "Classic dramas", c: "29809"}, {n: "Musical comedy", c: "32392"}, {n: "Classic romance", c: "31273"}, {n: "Classic thrillers", c: "46588"}, {n: "Classic war", c: "48744"}, {n: "Classic westerns", c: "47465"}, {n: "Epics", c: "52858"}, {n: "Film Noir", c: "7687"}, {n: "Silent Movies", c: "53310"}
+            ]},
+            { t: "Comedies", items: [
+                {n: "Main Category", c: "6548"}, {n: "Animes comedies", c: "9302"}, {n: "Dark comedies", c: "869"}, {n: "Foreign Comedies", c: "4426"}, {n: "Horror comedies", c: "89585"}, {n: "Late Night", c: "1402"}, {n: "Mockumentaries", c: "26"}, {n: "Musicals comedies", c: "13335"}, {n: "Political comedies", c: "2700"}, {n: "Romantic Comedies", c: "5475"}, {n: "Satires", c: "4922"}, {n: "Screwball Comedies", c: "9702"}, {n: "Slapstick comedies", c: "10256"}, {n: "Sports comedies", c: "5286"}, {n: "Stand-up Comedy", c: "11559"}, {n: "Teen Comedies", c: "3519"}
+            ]},
+            { t: "Documentaries", items: [
+                {n: "Main Category", c: "6839"}, {n: "Biographical", c: "3652"}, {n: "Crime docu", c: "9875"}, {n: "Foreign docu", c: "5161"}, {n: "Historical", c: "5349"}, {n: "Military", c: "4006"}, {n: "Music & concert", c: "90361"}, {n: "Political", c: "7018"}, {n: "Religious", c: "10005"}, {n: "Science & nature", c: "2595"}, {n: "Social/Cultural", c: "3675"}, {n: "Spirituality", c: "2760"}, {n: "Sports docu", c: "180"}, {n: "Travel", c: "1159"}
+            ]},
+            { t: "Dramas", items: [
+                {n: "Main Category", c: "5763"}, {n: "Army dramas", c: "11"}, {n: "Biographical", c: "3179"}, {n: "Crime dramas", c: "6889"}, {n: "Based on Books", c: "4961"}, {n: "Real life", c: "3653"}, {n: "LGBT+ Dramas", c: "500"}, {n: "Political Dramas", c: "6616"}, {n: "Romantical dramas", c: "1255"}, {n: "Showbiz dramas", c: "5012"}, {n: "Social issues", c: "3947"}, {n: "Sports dramas", c: "7243"}
+            ]},
+            { t: "Foreign movies", items: [
+                {n: "Main Category", c: "78367"}, {n: "African Movies", c: "3761"}, {n: "Asian action", c: "77232"}, {n: "Australian", c: "5230"}, {n: "Belgian", c: "262"}, {n: "British", c: "10757"}, {n: "Chinese", c: "3960"}, {n: "Classic Foreign", c: "32473"}, {n: "Dutch", c: "10606"}, {n: "Eastern European", c: "5254"}, {n: "Foreign SF", c: "6485"}, {n: "Foreign Action", c: "11828"}, {n: "Foreign Comedies", c: "4426"}, {n: "Foreign Docu", c: "5161"}, {n: "Foreign Dramas", c: "2150"}, {n: "Foreign Gay/Lesbian", c: "8243"}, {n: "Foreign Horror", c: "8654"}, {n: "Foreign Thrillers", c: "10306"}, {n: "French Movies", c: "58807"}, {n: "German Movies", c: "58886"}, {n: "Greek", c: "61115"}, {n: "Indian", c: "10463"}, {n: "Irish", c: "58750"}, {n: "Italian", c: "8221"}, {n: "Japanese", c: "10398"}, {n: "Korean", c: "5685"}, {n: "Latin American", c: "1613"}, {n: "Middle Eastern", c: "5875"}, {n: "New Zealand", c: "63782"}, {n: "Romantic Foreign", c: "7153"}, {n: "Russian", c: "11567"}, {n: "Scandinavian", c: "9292"}, {n: "Southeast Asian", c: "9196"}, {n: "Spanish", c: "58741"}, {n: "Taiwanese", c: "434295"}, {n: "Thai Movies & TV", c: "107570"}, {n: "Turkish", c: "1133133"}
+            ]},
+            { t: "Horror movies", items: [
+                {n: "Main Category", c: "8711"}, {n: "Cult horror", c: "10944"}, {n: "Deep sea", c: "45028"}, {n: "Foreign horror", c: "8654"}, {n: "Horror comedy", c: "89585"}, {n: "Monster", c: "947"}, {n: "Satanic stories", c: "6998"}, {n: "Slasher", c: "8646"}, {n: "Supernatural", c: "42023"}, {n: "Teen screams", c: "52147"}, {n: "Vampire", c: "75804"}, {n: "Werewolf", c: "75930"}, {n: "Zombie", c: "75405"}
+            ]},
+            { t: "Independent", items: [
+                {n: "Main Category", c: "7077"}, {n: "Experimental", c: "11079"}, {n: "Indie Action", c: "11804"}, {n: "Indie Comedies", c: "4195"}, {n: "Indie Dramas", c: "384"}, {n: "Indie Thrillers", c: "3269"}, {n: "Romantic Indie", c: "9916"}
+            ]},
+            { t: "LGBTQ+", items: [
+                {n: "Main Category", c: "5977"}, {n: "LGBTQ+ Comedies", c: "7120"}, {n: "LGBTQ+ Docu", c: "4720"}, {n: "LGBTQ+ Dramas", c: "500"}, {n: "LGBTQ+ TV", c: "65263"}, {n: "Romantic LGBTQ+", c: "3329"}
+            ]},
+            { t: "Music", items: [
+                {n: "Main Category", c: "1701"}, {n: "Classic musicals", c: "32392"}, {n: "Country/Folk", c: "1105"}, {n: "Disney musicals", c: "59433"}, {n: "Jazz & Listening", c: "10271"}, {n: "Kids music", c: "52843"}, {n: "Latin music", c: "10741"}, {n: "Musicals", c: "13335"}, {n: "Rock/Pop Concerts", c: "3278"}, {n: "Showbiz musicals", c: "13573"}, {n: "Stage musicals", c: "55774"}, {n: "Urban/Dance", c: "9472"}, {n: "World music", c: "2856"}
+            ]},
+            { t: "Romantic", items: [
+                {n: "Main Category", c: "8883"}, {n: "Classic romance", c: "31273"}, {n: "Quirky romance", c: "36103"}, {n: "Romantic Comedies", c: "5475"}, {n: "Romantic dramas", c: "1255"}, {n: "Romantic favorites", c: "502675"}, {n: "Romantic Foreign", c: "7153"}, {n: "Romantic Indie", c: "9916"}, {n: "Steamy romance", c: "35800"}
+            ]},
+            { t: "Sci-Fi & Fantasy", items: [
+                {n: "Main Category", c: "1492"}, {n: "Action Sci-Fi", c: "1568"}, {n: "Alien Sci-Fi", c: "3327"}, {n: "Classic Sci-Fi", c: "47147"}, {n: "Cult Sci-Fi", c: "4734"}, {n: "Fantasy movies", c: "9744"}, {n: "Foreign Sci-Fi", c: "6485"}, {n: "Sci-Fi adventure", c: "6926"}, {n: "Sci-Fi dramas", c: "3916"}, {n: "Sci-Fi horror", c: "1694"}, {n: "Sci-Fi thrillers", c: "11014"}
+            ]},
+            { t: "Sports", items: [
+                {n: "Main Category", c: "4370"}, {n: "Baseball", c: "12339"}, {n: "Basketball", c: "12762"}, {n: "Boxing", c: "12443"}, {n: "Football", c: "12803"}, {n: "Martial arts", c: "8985"}, {n: "Boxing/Wrestling", c: "6695"}, {n: "Soccer", c: "12549"}, {n: "Sports & Fitness", c: "9327"}, {n: "Sports comedies", c: "5286"}, {n: "Sports docu", c: "180"}, {n: "Sports dramas", c: "7243"}
+            ]},
+            { t: "TV Show", items: [
+                {n: "Main Category", c: "83"}, {n: "British TV", c: "52117"}, {n: "Classic TV", c: "46553"}, {n: "Crime TV", c: "26146"}, {n: "Cult TV", c: "74652"}, {n: "Food & travel", c: "72436"}, {n: "Kids' TV", c: "27346"}, {n: "Korean TV", c: "67879"}, {n: "Military TV", c: "25804"}, {n: "Miniseries", c: "4814"}, {n: "Reality TV", c: "9833"}, {n: "Science & nature", c: "52780"}, {n: "TV Sci-Fi", c: "1372"}, {n: "TV Action", c: "10673"}, {n: "TV comedies", c: "10375"}, {n: "TV docu", c: "10105"}, {n: "TV dramas", c: "11714"}, {n: "TV horror", c: "83059"}, {n: "TV mysteries", c: "4366"}
+            ]},
+            { t: "Teen TV", items: [
+                {n: "Main Category", c: "60951"}, {n: "Teen comedies", c: "3519"}, {n: "Teen dramas", c: "9299"}, {n: "Teen screams", c: "52147"}
+            ]},
+            { t: "Thrillers", items: [
+                {n: "Main Category", c: "8933"}, {n: "Action thrillers", c: "43048"}, {n: "Classic thrillers", c: "46588"}, {n: "Crime thrillers", c: "10499"}, {n: "Foreign thrillers", c: "10306"}, {n: "Gangster movies", c: "31851"}, {n: "Indie thrillers", c: "3269"}, {n: "Mysteries", c: "9994"}, {n: "Political thrillers", c: "10504"}, {n: "Psychological", c: "5505"}, {n: "Sci-Fi thrillers", c: "11014"}, {n: "Spy thrillers", c: "9147"}, {n: "Steamy thrillers", c: "972"}, {n: "Supernatural", c: "11140"}
+            ]},
+            { t: "Others", items: [
+                {n: "All movies", c: "34399"}, {n: "Art House", c: "29764"}, {n: "Epics", c: "52858"}, {n: "Experimental", c: "11079"}, {n: "Faith & Spirituality", c: "52804"}, {n: "Fantasy movies", c: "9744"}, {n: "Film noir", c: "7687"}, {n: "Gangster movies", c: "31851"}, {n: "Only on Netflix", c: "839338"}, {n: "Satanic stories", c: "6998"}, {n: "Satires", c: "4922"}, {n: "Stand-up comedies", c: "11559"}
+            ]}
+        ];
+
+        function init() {
+            const container = document.getElementById('mainContainer');
+            data.forEach(sec => {
+                let sectionHtml = `<div class="category-section">
+                    <div class="section-title">${sec.t}</div>
+                    <div class="grid">`;
+                
+                sec.items.forEach(item => {
+                    sectionHtml += `
+                        <a href="https://www.netflix.com/browse/genre/${item.c}" target="_blank" class="card">
+                            <span class="label">${item.n}</span>
+                            <span class="code-num">Code: ${item.c}</span>
+                        </a>`;
+                });
+                
+                sectionHtml += `</div></div>`;
+                container.innerHTML += sectionHtml;
+            });
+        }
+
+        function filter() {
             let input = document.getElementById('searchInput').value.toLowerCase();
-            let btns = document.getElementsByClassName('btn');
-            let sections = document.getElementsByClassName('category-section');
-            let noResults = document.getElementById('noResults');
+            let cards = document.querySelectorAll('.card');
+            let sections = document.querySelectorAll('.category-section');
             let anyVisible = false;
 
-            for (let btn of btns) {
-                let text = btn.innerText.toLowerCase();
-                if (text.includes(input)) {
-                    btn.classList.remove('hidden');
+            cards.forEach(card => {
+                if (card.innerText.toLowerCase().includes(input)) {
+                    card.classList.remove('hidden');
                     anyVisible = true;
                 } else {
-                    btn.classList.add('hidden');
+                    card.classList.add('hidden');
                 }
-            }
+            });
 
-            for (let section of sections) {
-                let visibleBtns = section.querySelectorAll('.btn:not(.hidden)');
-                section.style.display = (visibleBtns.length === 0) ? 'none' : 'block';
-            }
-
-            noResults.style.display = anyVisible ? 'none' : 'block';
+            sections.forEach(sec => {
+                let visibleCards = sec.querySelectorAll('.card:not(.hidden)');
+                sec.style.display = (visibleCards.length === 0) ? 'none' : 'block';
+            });
+            document.getElementById('noResults').style.display = anyVisible ? 'none' : 'block';
         }
+
+        init();
     </script>
 </body>
 </html>
