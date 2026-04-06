@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ket's Netflix Noir</title>
+    <style>
+        :root {
+            --bg: #141414;
+            --card: #1f1f1f;
+            --accent: #E50914;
+            --text: #ffffff;
+        }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
+            background: var(--bg); color: var(--text); 
+            margin: 0; padding: 20px;
+        }
+        h2 { font-weight: 700; letter-spacing: -1px; margin-bottom: 20px; color: var(--accent); }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .btn {
+            background: var(--card);
+            padding: 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #333;
+            transition: 0.2s;
+        }
+        .btn:active { transform: scale(0.95); background: #333; }
+        .code { font-size: 10px; opacity: 0.5; margin-top: 5px; }
+        .footer { margin-top: 30px; font-size: 12px; opacity: 0.4; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <h2>Ket's Curated</h2>
+    
+    <div class="grid">
+        <a href="nflx://www.netflix.com/browse/genre/10504" class="btn">
+            Political Thrillers <span class="code">Code: 10504</span>
+        </a>
+        <a href="nflx://www.netflix.com/browse/genre/6616" class="btn">
+            Political Dramas <span class="code">Code: 6616</span>
+        </a>
+        <a href="nflx://www.netflix.com/browse/genre/10131" class="btn">
+            Cerebral Movies <span class="code">Code: 10131</span>
+        </a>
+        <a href="nflx://www.netflix.com/browse/genre/7687" class="btn">
+            Film Noir <span class="code">Code: 7687</span>
+        </a>
+        <a href="nflx://www.netflix.com/browse/genre/384" class="btn">
+            Independent Dramas <span class="code">Code: 384</span>
+        </a>
+        <a href="nflx://www.netflix.com/browse/genre/6206" class="btn">
+            Critically Acclaimed <span class="code">Code: 6206</span>
+        </a>
+        <a href="nflx://www.netflix.com/browse/genre/81603903" class="btn">
+            Slow Burn Movies <span class="code">Code: 81603903</span>
+        </a>
+        <a href="nflx://www.netflix.com/search?q=IMDb%207" class="btn">
+            IMDb 7+ (Search) <span class="code">Custom Link</span>
+        </a>
+    </div>
+
+    <div class="footer">
+        Design by Jamie for Ket • No Ads • Pure Quality
+    </div>
+
+</body>
+</html>
