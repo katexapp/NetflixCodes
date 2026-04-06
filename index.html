@@ -3,73 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ket's Netflix Noir</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Netflix Codes</title>
     <style>
         :root {
-            --bg: #141414;
-            --card: #1f1f1f;
+            --bg: #000000;
+            --card: #1c1c1e;
             --accent: #E50914;
             --text: #ffffff;
+            --secondary: #a1a1a6;
+            --search-bg: #2c2c2e;
         }
         body { 
             font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
-            background: var(--bg); color: var(--text); 
-            margin: 0; padding: 20px;
+            background: var(--bg); color: var(--text); margin: 0; 
+            padding: env(safe-area-inset-top) 0 40px 0;
+            -webkit-tap-highlight-color: transparent;
         }
-        h2 { font-weight: 700; letter-spacing: -1px; margin-bottom: 20px; color: var(--accent); }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .header { 
+            position: sticky; top: 0; background: rgba(0,0,0,0.85); 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 20px 15px; z-index: 100; border-bottom: 0.5px solid #333;
+        }
+        h1 { font-size: 24px; font-weight: 800; margin: 0 0 15px 0; color: var(--accent); letter-spacing: -0.5px; }
+        
+        #searchInput {
+            width: 100%; padding: 12px 15px; border-radius: 12px; border: none;
+            background: var(--search-bg); color: white; font-size: 16px; box-sizing: border-box;
+            outline: none; -webkit-appearance: none;
+        }
+
+        .container { padding: 0 15px; }
+        .category-section { margin-top: 30px; }
+        .section-title { 
+            font-size: 16px; color: var(--secondary); 
+            margin-bottom: 12px; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        
         .btn {
-            background: var(--card);
-            padding: 15px;
-            border-radius: 12px;
-            text-decoration: none;
-            color: white;
-            font-size: 14px;
-            font-weight: 500;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid #333;
-            transition: 0.2s;
+            background: var(--card); padding: 18px 12px; border-radius: 14px;
+            text-decoration: none; color: white; display: flex; flex-direction: column;
+            border: 0.5px solid #2c2c2e; transition: all 0.1s;
         }
-        .btn:active { transform: scale(0.95); background: #333; }
-        .code { font-size: 10px; opacity: 0.5; margin-top: 5px; }
-        .footer { margin-top: 30px; font-size: 12px; opacity: 0.4; text-align: center; }
+        .btn:active { transform: scale(0.96); background: #333; }
+        .label { font-size: 14px; font-weight: 500; line-height: 1.3; margin-bottom: 6px; height: 34px; display: flex; align-items: center; }
+        .code { font-size: 11px; color: var(--secondary); font-family: monospace; }
+
+        .hidden { display: none !important; }
+        .no-results { text-align: center; padding: 50px; color: var(--secondary); display: none; }
     </style>
 </head>
 <body>
 
-    <h2>Ket's Curated</h2>
-    
-    <div class="grid">
-        <a href="nflx://www.netflix.com/browse/genre/10504" class="btn">
-            Political Thrillers <span class="code">Code: 10504</span>
-        </a>
-        <a href="nflx://www.netflix.com/browse/genre/6616" class="btn">
-            Political Dramas <span class="code">Code: 6616</span>
-        </a>
-        <a href="nflx://www.netflix.com/browse/genre/10131" class="btn">
-            Cerebral Movies <span class="code">Code: 10131</span>
-        </a>
-        <a href="nflx://www.netflix.com/browse/genre/7687" class="btn">
-            Film Noir <span class="code">Code: 7687</span>
-        </a>
-        <a href="nflx://www.netflix.com/browse/genre/384" class="btn">
-            Independent Dramas <span class="code">Code: 384</span>
-        </a>
-        <a href="nflx://www.netflix.com/browse/genre/6206" class="btn">
-            Critically Acclaimed <span class="code">Code: 6206</span>
-        </a>
-        <a href="nflx://www.netflix.com/browse/genre/81603903" class="btn">
-            Slow Burn Movies <span class="code">Code: 81603903</span>
-        </a>
-        <a href="nflx://www.netflix.com/search?q=IMDb%207" class="btn">
-            IMDb 7+ (Search) <span class="code">Custom Link</span>
-        </a>
+    <div class="header">
+        <h1>Netflix Codes</h1>
+        <input type="search" id="searchInput" placeholder="Search categories or codes..." onkeyup="filterCodes()">
     </div>
 
-    <div class="footer">
-        Design by Jamie for Ket • No Ads • Pure Quality
+    <div class="container" id="mainContainer">
+        <div class="category-section">
+            <div class="section-title">Thrillers</div>
+            <div class="grid">
+                <a href="https://www.netflix.com/browse/genre/8933" target="_blank" class="btn"><span class="label">Main Thrillers</span><span class="code">8933</span></a>
+                <a href="https://www.netflix.com/browse/genre/10504" target="_blank" class="btn"><span class="label">Political Thrillers</span><span class="code">10504</span></a>
+                <a href="https://www.netflix.com/browse/genre/5505" target="_blank" class="btn"><span class="label">Psychological</span><span class="code">5505</span></a>
+                <a href="https://www.netflix.com/browse/genre/972" target="_blank" class="btn"><span class="label">Steamy Thrillers</span><span class="code">972</span></a>
+                <a href="https://www.netflix.com/browse/genre/46588" target="_blank" class="btn"><span class="label">Classic Thrillers</span><span class="code">46588</span></a>
+                <a href="https://www.netflix.com/browse/genre/10499" target="_blank" class="btn"><span class="label">Crime Thrillers</span><span class="code">10499</span></a>
+                <a href="https://www.netflix.com/browse/genre/9994" target="_blank" class="btn"><span class="label">Mysteries</span><span class="code">9994</span></a>
+                <a href="https://www.netflix.com/browse/genre/9147" target="_blank" class="btn"><span class="label">Spy Thrillers</span><span class="code">9147</span></a>
+            </div>
+        </div>
+
+        <div class="category-section">
+            <div class="section-title">Dramas</div>
+            <div class="grid">
+                <a href="https://www.netflix.com/browse/genre/5763" target="_blank" class="btn"><span class="label">Main Dramas</span><span class="code">5763</span></a>
+                <a href="https://www.netflix.com/browse/genre/6616" target="_blank" class="btn"><span class="label">Political Dramas</span><span class="code">6616</span></a>
+                <a href="https://www.netflix.com/browse/genre/384" target="_blank" class="btn"><span class="label">Indie Dramas</span><span class="code">384</span></a>
+                <a href="https://www.netflix.com/browse/genre/3179" target="_blank" class="btn"><span class="label">Biographical</span><span class="code">3179</span></a>
+                <a href="https://www.netflix.com/browse/genre/6889" target="_blank" class="btn"><span class="label">Crime Dramas</span><span class="code">6889</span></a>
+                <a href="https://www.netflix.com/browse/genre/3653" target="_blank" class="btn"><span class="label">Based on Real Life</span><span class="code">3653</span></a>
+            </div>
+        </div>
+
+        <div class="category-section">
+            <div class="section-title">Classics & Art</div>
+            <div class="grid">
+                <a href="https://www.netflix.com/browse/genre/31574" target="_blank" class="btn"><span class="label">Classic Movies</span><span class="code">31574</span></a>
+                <a href="https://www.netflix.com/browse/genre/7687" target="_blank" class="btn"><span class="label">Film Noir</span><span class="code">7687</span></a>
+                <a href="https://www.netflix.com/browse/genre/29764" target="_blank" class="btn"><span class="label">Art House</span><span class="code">29764</span></a>
+                <a href="https://www.netflix.com/browse/genre/53310" target="_blank" class="btn"><span class="label">Silent Movies</span><span class="code">53310</span></a>
+                <a href="https://www.netflix.com/browse/genre/52858" target="_blank" class="btn"><span class="label">Epics</span><span class="code">52858</span></a>
+            </div>
+        </div>
+
+        <div class="category-section">
+            <div class="section-title">Foreign & Thai</div>
+            <div class="grid">
+                <a href="https://www.netflix.com/browse/genre/107570" target="_blank" class="btn"><span class="label">Thai Movies & TV</span><span class="code">107570</span></a>
+                <a href="https://www.netflix.com/browse/genre/9196" target="_blank" class="btn"><span class="label">Southeast Asian</span><span class="code">9196</span></a>
+                <a href="https://www.netflix.com/browse/genre/5685" target="_blank" class="btn"><span class="label">Korean Movies</span><span class="code">5685</span></a>
+                <a href="https://www.netflix.com/browse/genre/10398" target="_blank" class="btn"><span class="label">Japanese Movies</span><span class="code">10398</span></a>
+                <a href="https://www.netflix.com/browse/genre/9292" target="_blank" class="btn"><span class="label">Scandinavian</span><span class="code">9292</span></a>
+                <a href="https://www.netflix.com/browse/genre/58807" target="_blank" class="btn"><span class="label">French Movies</span><span class="code">58807</span></a>
+            </div>
+        </div>
+
+        <div class="category-section">
+            <div class="section-title">Sci-Fi & Action</div>
+            <div class="grid">
+                <a href="https://www.netflix.com/browse/genre/1492" target="_blank" class="btn"><span class="label">Main Sci-Fi</span><span class="code">1492</span></a>
+                <a href="https://www.netflix.com/browse/genre/1365" target="_blank" class="btn"><span class="label">Action & Adv</span><span class="code">1365</span></a>
+                <a href="https://www.netflix.com/browse/genre/43048" target="_blank" class="btn"><span class="label">Action Thrillers</span><span class="code">43048</span></a>
+                <a href="https://www.netflix.com/browse/genre/1568" target="_blank" class="btn"><span class="label">Action SF</span><span class="code">1568</span></a>
+            </div>
+        </div>
+
+        <div class="no-results" id="noResults">No categories found</div>
     </div>
 
+    <script>
+        function filterCodes() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let btns = document.getElementsByClassName('btn');
+            let sections = document.getElementsByClassName('category-section');
+            let noResults = document.getElementById('noResults');
+            let anyVisible = false;
+
+            for (let btn of btns) {
+                let text = btn.innerText.toLowerCase();
+                if (text.includes(input)) {
+                    btn.classList.remove('hidden');
+                    anyVisible = true;
+                } else {
+                    btn.classList.add('hidden');
+                }
+            }
+
+            for (let section of sections) {
+                let visibleBtns = section.querySelectorAll('.btn:not(.hidden)');
+                section.style.display = (visibleBtns.length === 0) ? 'none' : 'block';
+            }
+
+            noResults.style.display = anyVisible ? 'none' : 'block';
+        }
+    </script>
 </body>
 </html>
